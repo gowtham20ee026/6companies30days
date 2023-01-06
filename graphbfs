@@ -1,0 +1,49 @@
+import java.util.*;
+public class graphbfs {
+    public static LinkedList<Integer>adj[];
+    public graphbfs(int vertices)
+    {
+        adj= new LinkedList[vertices];
+        for(int i=0;i<vertices;i++)
+        adj[i]=new LinkedList<>();
+    }
+    public void add(int a,int b)
+    {
+        adj[a].add(b);
+    }
+
+    public static void main(String[] args) {
+        Scanner sg=new Scanner(System.in);
+        System.out.println("Enter vertices");
+        int n=sg.nextInt();
+        graphbfs g=new graphbfs(n);
+        for(int k=0;k<n;k++)
+        {
+            System.out.println("enter directed values"+" "+k);
+            g.add(sg.nextInt(),sg.nextInt());
+        }
+        boolean check[]=new boolean[n];
+        int s=0;
+        check[s]=true;
+        Queue<Integer>p=new LinkedList<>();
+        p.offer(s);
+        while(!p.isEmpty())
+        {
+            int a=p.poll();
+            System.out.println(a);
+            for(int j:adj[a])
+            {
+                if(check[j]!=true)
+                {
+                    p.offer(j);
+                    check[j]=true;
+                }
+            }
+
+        }
+       // System.out.println(g.adj);
+
+        
+    }
+    
+}
